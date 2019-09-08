@@ -1,0 +1,53 @@
+﻿@using PROJEKAT_WEB1.Models
+
+@{
+    Layout = null;
+    var getSadrzajApartmana = new Func<List<SadrzajApartmana>>(() => (List<SadrzajApartmana>)Session["SadrzajApartmana"]);
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/GoToHomeAdmin" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+        <a href="/Apartman/GoToKreirajSadrzajZaApartman" class="w3-bar-item w3-button w3-text-black">Kreiraj sadrzaj za apartman</a>
+    </div>
+    <br />
+    <table border="1" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+        <tr>
+            <th>
+                Naziv
+            </th>
+            <th>
+                Id
+            </th>
+        </tr>
+        @foreach (SadrzajApartmana temp in (List<SadrzajApartmana>)Session["SadrzajApartmana"])
+        {
+
+            <tr>
+                <td>
+                    @temp.naziv
+                </td>
+                <td>
+                    @temp.id
+                </td>
+                <td>
+                    <form action="/Apartman/GoToModifikujSadrzajApartmanaAdmin" method="post">
+                        <input type="hidden" value="@temp.id" name="modifikuj" />
+                        <input type="submit" value="Modifikuj" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                    </form>
+                </td>
+                <td>
+                    <form action="/Apartman/ObrisiSadrzajApartmanaAdmin" method="post">
+                        <input type="hidden" value="@temp.id" name="obrisi" />
+                        <input type="submit" value="Obrisi" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</body>

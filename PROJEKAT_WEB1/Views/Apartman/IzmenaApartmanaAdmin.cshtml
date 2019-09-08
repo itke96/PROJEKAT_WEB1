@@ -1,0 +1,185 @@
+﻿@using PROJEKAT_WEB1.Models
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <form action="/Apartman/IzmenaApartmanaAdminStep1" method="post">
+        <div class="w3-bar w3-border w3-transparent w3-border-black">
+            <a href="/Apartman/GoToHomeAdmin" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+        </div>
+        <br />
+        <table border="0" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+
+            <tr>
+                <td><b>Lokacija</b></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Geografska sirina</td>
+                <td><input type="number" name="geografskaSirina" value="@ViewBag.s.lokacija.geografskaSirina" required /></td>
+            </tr>
+            <tr>
+                <td>Geografska duzina</td>
+                <td><input type="number" name="geografskaDuzina" value="@ViewBag.s.lokacija.geografskaDuzina" required /></td>
+            </tr>
+            <tr>
+                <td><b>Adresa</b></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Naziv ulice</td>
+                <td><input type="text" name="nazivUlice" value="@ViewBag.s.lokacija.adresa.nazivUlice" required /></td>
+            </tr>
+            <tr>
+                <td>Broj</td>
+                <td><input type="text" name="broj" value="@ViewBag.s.lokacija.adresa.broj" required /></td>
+            </tr>
+            <tr>
+                <td>Naziv mesta</td>
+                <td><input type="text" name="nazivMesta" value="@ViewBag.s.lokacija.adresa.nazivMesta" required /></td>
+            </tr>
+            <tr>
+                <td>Postanski broj</td>
+                <td><input type="text" name="postanskiBroj" value="@ViewBag.s.lokacija.adresa.postanskiBroj" required /></td>
+            </tr>
+
+            @if (ViewBag.s.tip.ToString() == "CEO_APARTMAN")
+            {
+                <tr>
+                    <td>Tip apartmana</td>
+                    <td align="left">
+                        <select name="tip">
+                            <option value="CEO_APARTMAN" selected>Ceo apartman</option>
+                            <option value="SOBA">Soba</option>
+                        </select>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Tip apartmana</td>
+                    <td align="left">
+                        <select name="tip">
+                            <option value="CEO_APARTMAN">Ceo apartman</option>
+                            <option value="SOBA" selected>Soba</option>
+                        </select>
+                    </td>
+                </tr>
+            }
+            @if (ViewBag.s.status.ToString() == "NEAKTIVNO")
+            {
+                <tr>
+                    <td>Status apartmana</td>
+                    <td align="left">
+                        <select name="status">
+                            <option value="NEAKTIVANO" selected>Neaktivan</option>
+                            <option value="AKTIVNO">Aktivan</option>
+                        </select>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Status apartmana</td>
+                    <td align="left">
+                        <select name="status">
+                            <option value="NEAKTIVANO">Neaktivan</option>
+                            <option value="AKTIVNO" selected>Aktivan</option>
+                        </select>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td>Broj soba</td>
+                <td><input type="number" name="brojSoba" value="@ViewBag.s.brojSoba" required /></td>
+            </tr>
+
+            <tr>
+                <td>Broj gostiju</td>
+                <td><input type="number" name="brojGostiju" value="@ViewBag.s.brojGostiju" required /></td>
+            </tr>
+
+            <tr><td>Vreme prijave</td><td><input type="time" value="@ViewBag.s.vremeZaPrijavu" name="pocetakp" /></td></tr>
+            <tr><td>Vreme odjave</td><td><input type="time" value=" @ViewBag.s.vremeZaOdjavu" name="krajp" /></td></tr>
+
+
+            <tr>
+                <td>Datum dostupnosti od</td>
+                @{
+                    var prvi = ViewBag.s.datumiZaIzdavanje[0];
+                    var poslednji = ViewBag.s.datumiZaIzdavanje[ViewBag.s.datumiZaIzdavanje.Count - 1];
+                    <td><input type="date" name="datumDostupnostiOd" value="@prvi" required /></td>
+                }
+            </tr>
+            <tr>
+                <td>Datum dostupnosti do</td>
+                <td><input type="date" name="datumDostupnostiDo" value="@poslednji" required /></td>
+            </tr>
+
+            <tr>
+                <td>Cena po noci</td>
+                <td><input type="number" name="cenaNocenja" value="@ViewBag.s.cenaNocenja" required /></td>
+            </tr>
+
+        </table>
+        <table border="0" style="background-color:transparent" class="w3-text-black w3-display-middle w3-large">
+            <tr>
+                <td><b>Sadrzaj apartmana</b></td>
+                <td>&nbsp;</td>
+            </tr>
+            @{
+                List<SadrzajApartmana> sadrzaji = new List<SadrzajApartmana>();
+                sadrzaji = ViewBag.s.sadrzajApartmana;
+                bool ispisan = false;
+                bool provera = false;
+            }
+            @foreach (SadrzajApartmana temp in (List<SadrzajApartmana>)Session["SadrzajApartmana"])
+            {
+                ispisan = false;
+                if (sadrzaji.Count > 0)
+                {
+                    provera = true;
+                    foreach (var temp2 in sadrzaji)
+                    {
+                        if (temp.naziv == temp2.naziv)
+                        {
+                            <tr>
+                                <td><input type="checkbox" name="@temp.id" value="@temp.naziv" checked />@temp.naziv</td>
+                            </tr>
+                            ispisan = true;
+
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td><input type="checkbox" name="@temp.id" value="@temp.naziv" /> @temp.naziv </td>
+                    </tr>
+                }
+                if (!ispisan == true && provera == true)
+                {
+                    <tr>
+                        <td><input type="checkbox" name="@temp.id" value="@temp.naziv" />@temp.naziv</td>
+                    </tr>
+                }
+
+
+            }
+            <tr>
+                <td><input type="hidden" value="@ViewBag.s.domacin.korisnickoIme" name="domacin" /></td>
+                <td><input type="hidden" value="@ViewBag.s.lokacija.adresa.nazivMesta @ViewBag.s.lokacija.adresa.nazivUlice @ViewBag.s.lokacija.adresa.broj" name="idApartmana" /></td>
+                <td colspan="2"><input type="submit" value="Izmeni" border="1" name="submit" style="background-color:transparent; border-color:black" class="w3-text-black w3-hover-blue" /></td>
+            </tr>
+        </table>
+    </form>
+</body>

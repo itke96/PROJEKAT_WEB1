@@ -1,0 +1,137 @@
+﻿@using PROJEKAT_WEB1.Models
+
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/Index" class="w3-bar-item w3-button w3-text-Black">Povratak na pocetnu stranicu</a>
+    </div>
+    <br />
+    <table border="0">
+        <tr>
+            <td>
+                <form action="/Apartman/FiltrirajApartmaneTipIndex" method="post">
+                    <select name="tip">
+                        <option value="CEO_APARTMAN">
+                            Ceo apartman
+                        </option>
+                        <option value="SOBA">
+                            Soba
+                        </option>
+                    </select>
+                    <input type="submit" value="Filtriraj po tipu" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                </form>
+            </td>
+            <td>
+                <form action="/Apartman/FiltrirajApartmaneSadrzajIndex" method="post">
+                    <select name="sadrzaj">
+                        @foreach (var temp in (List<SadrzajApartmana>)Session["SadrzajApartmana"])
+                        {
+                            <option value="@temp.naziv">
+                                @temp.naziv
+                            </option>
+                        }
+                    </select>
+                    <input type="submit" value="Filtriraj po sadrzaju apartmana" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                </form>
+            </td>
+            <td>
+                <form action="/Apartman/SortiranjeIndex" method="post">
+                    <select name="sortiranje">
+                        <option value="cenaRastuce">
+                            Po ceni rastuce
+                        </option>
+                        <option value="cenaOpadajuce">
+                            Po ceni opadajuce
+                        </option>
+                        <option value="brSobaRastuce">
+                            Po broju soba rastuce
+                        </option>
+                        <option value="brSobaOpadajuce">
+                            Po broju soba opadajuce
+                        </option>
+                        <option value="brOsobaRastuce">
+                            Po broju osoba rastuce
+                        </option>
+                        <option value="brOsobaOpadajuce">
+                            Po broju osoba opadajuce
+                        </option>
+                    </select>
+                    <input type="submit" value="Sortiraj apartmane" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <table border="1" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+        <tr>
+            <th>
+                Slika
+            </th>
+            <th>
+                Adresa
+            </th>
+            <th>
+                Domacin
+            </th>
+            <th>
+                Cena nocenja
+            </th>
+            <th>
+                Broj soba
+            </th>
+            <th>
+                Broj gostiju
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+        @foreach (KeyValuePair<string, Apartman> temp in ViewBag.apartmani)//(List<Apartman>)Session["Apartmani"])
+        {
+            if (temp.Value.status.ToString() == "AKTIVNO")
+            {
+                <tr>
+                    <td>
+                        <img width="140" height="70" src="@temp.Value.slike[0]" />
+                    </td>
+
+                    <td>
+                        @temp.Value.lokacija.adresa.nazivMesta @temp.Value.lokacija.adresa.nazivUlice @temp.Value.lokacija.adresa.broj
+                    </td>
+                    <td>
+                        @temp.Value.domacin.ime @temp.Value.domacin.prezime
+                    </td>
+                    <td>
+                        @temp.Value.cenaNocenja
+                    </td>
+                    <td>
+                        @temp.Value.brojSoba
+                    </td>
+                    <td>
+                        @temp.Value.brojGostiju
+                    </td>
+                    <td>
+                        @temp.Value.status.ToString()
+                    </td>
+                    <td>
+                        <form action="/Apartman/GoToPrikaziApartmanNeregistrovaniKorisnici" method="post">
+                            <input type="hidden" value="@temp.Value.lokacija.adresa.nazivMesta @temp.Value.lokacija.adresa.nazivUlice @temp.Value.lokacija.adresa.broj" name="prikazi" />
+                            <input type="submit" value="Prikazi" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+
+</body>

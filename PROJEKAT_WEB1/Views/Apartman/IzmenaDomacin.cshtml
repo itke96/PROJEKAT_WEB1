@@ -1,0 +1,55 @@
+﻿@using PROJEKAT_WEB1.Models
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/GoToHomeDomacin" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <br />
+    <form action="/Apartman/IzmenaDomacin" method="post">
+        <table border="0" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+            <tr>
+                <td>Ime</td>
+                <td><input type="text" value="@(((Korisnik)Session["Ulogovan"]).ime)" name="ime" /></td>
+            </tr>
+            <tr>
+                <td>Prezime</td>
+                <td><input type="text" value="@(((Korisnik)Session["Ulogovan"]).prezime)" name="prezime" /></td>
+            </tr>
+            <tr>
+                <td>Korisnicko ime</td>
+                <td><input type="text" value="@(((Korisnik)Session["Ulogovan"]).korisnickoIme)" name="korisnickoIme" /></td>
+            </tr>
+            <tr>
+                <td>Lozinka</td>
+                <td><input required type="password" name="Lozinka" /></td>
+            </tr>
+            <tr>
+                <td>Pol</td>
+                <td>
+                    <select name="Pol">
+                        @if ((((Korisnik)Session["Ulogovan"]).pol) == Pol.MUSKI)
+                        {
+                            <option selected value="MUSKI">Muski</option>
+                            <option value="ZENSKI">Zenski</option>
+                        }
+                        else
+                        {
+                            <option value="MUSKI">Muski</option>
+                            <option selected value="ZENSKI">Zenski</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Izmeni" border="1" name="submit" style="background-color:transparent; border-color:black" class="w3-text-black w3-hover-blue" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+

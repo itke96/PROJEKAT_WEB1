@@ -1,0 +1,114 @@
+﻿@using PROJEKAT_WEB1.Models
+
+@{
+    Layout = null;
+
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/GoToHomeGost" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <br />
+
+    <table border="1" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+        <tr>
+            <th><img width="140" height="90" src="@ViewBag.apaGost.slike[0]" /></th>
+            <th>@ViewBag.apaGost.lokacija.adresa.nazivMesta @ViewBag.apaGost.lokacija.adresa.nazivUlice @ViewBag.apaGost.lokacija.adresa.broj</th>
+        </tr>
+        <tr>
+            <th colspan="2">Osnovne informacije</th>
+        </tr>
+        <tr>
+            <td>Geografska sirina</td>
+            <td>@ViewBag.apaGost.lokacija.geografskaSirina</td>
+        </tr>
+        <tr>
+            <td>Geografska duzina</td>
+            <td>@ViewBag.apaGost.lokacija.geografskaDuzina</td>
+        </tr>
+        <tr>
+            <td>Postanski broj</td>
+            <td>@ViewBag.apaGost.lokacija.adresa.postanskiBroj</td>
+        </tr>
+
+        <tr>
+            <td>Tip apartmana</td>
+            @if (@ViewBag.apaGost.tip == TipApartmana.CEO_APARTMAN)
+            {
+                <td>Ceo apartman</td>
+            }
+            else
+            {
+                <td>Soba</td>
+            }
+        </tr>
+        <tr>
+            <td>Broj soba</td>
+            <td>@ViewBag.apaGost.brojSoba</td>
+        </tr>
+        <tr>
+            <td>Broj gostiju</td>
+            <td>@ViewBag.apaGost.brojGostiju</td>
+        </tr>
+        <tr>
+            <td>Cena po noci</td>
+            <td>@ViewBag.apaGost.cenaNocenja</td>
+        </tr>
+        <tr>
+            <td>Vreme za prijavu</td>
+            <td>@ViewBag.apaGost.vremeZaPrijavu</td>
+        </tr>
+        <tr>
+            <td>Vreme za odjavu</td>
+            <td>@ViewBag.apaGost.vremeZaOdjavu</td>
+        </tr>
+        <tr>
+            <td>Status</td>
+            @if (ViewBag.apaGost.status == Status.AKTIVNO)
+            {
+                <td>Aktivan</td>
+            }
+            else
+            {
+                <td>Neaktivan</td>
+            }
+        </tr>
+        <tr>
+            <td>Domacin</td>
+            <td>@ViewBag.apaGost.domacin.ime @ViewBag.apaGost.domacin.prezime</td>
+        </tr>
+    </table>
+    <br />
+    <table border="1" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+        <tr>
+            <td><b>Sadrzaj apartmana</b></td>
+
+        </tr>
+        @foreach (var temp in ViewBag.apaGost.sadrzajApartmana)
+        {
+            <tr>
+                <td>@temp.id @temp.naziv</td>
+            </tr>
+        }
+
+        <tr>
+            <th>Slike</th>
+
+        </tr>
+
+
+
+        @foreach (var temp in ViewBag.apaGost.slike)
+        {
+            <tr>
+                <td><img src="@temp" width="200" height="140" /></td>
+            </tr>
+
+        }
+    </table>
+</body>

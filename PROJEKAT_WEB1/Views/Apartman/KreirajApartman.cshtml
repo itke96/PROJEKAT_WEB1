@@ -1,0 +1,120 @@
+﻿@using PROJEKAT_WEB1.Models
+
+@{
+    Layout = null;
+
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/GoToHomeDomacin" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <br />
+    <form action="/Apartman/KreiranjeApartmana" method="post" enctype="multipart/form-data">
+
+        <table border="0" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+            <tr>
+                <td><b>Lokacija</b></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Geografska sirina</td>
+                <td><input type="number" name="geografskaSirina" required /></td>
+            </tr>
+            <tr>
+                <td>Geografska duzina</td>
+                <td><input type="number" name="geografskaDuzina" required /></td>
+            </tr>
+            <tr>
+                <td><b>Adresa</b></td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Naziv ulice</td>
+                <td><input type="text" name="nazivUlice" required /></td>
+            </tr>
+            <tr>
+                <td>Broj</td>
+                <td><input type="text" name="broj" required /></td>
+            </tr>
+            <tr>
+                <td>Naziv mesta</td>
+                <td><input type="text" name="nazivMesta" required /></td>
+            </tr>
+            <tr>
+                <td>Postanski broj</td>
+                <td><input type="text" name="postanskiBroj" required /></td>
+            </tr>
+
+            <tr>
+                <td>Tip apartmana</td>
+                <td align="left">
+                    <select name="tip">
+                        <option value="CEO_APARTMAN">Ceo apartman</option>
+                        <option value="SOBA">Soba</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td align="left">
+                    <select name="status">
+                        <option value="AKTIVNO">AKTIVNO</option>
+                        <option value="NEAKTIVNO" selected>NEAKTIVNO</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Broj soba</td>
+                <td><input type="number" name="brojSoba" required /></td>
+            </tr>
+
+            <tr>
+                <td>Broj gostiju</td>
+                <td><input type="number" name="brojGostiju" required /></td>
+            </tr>
+            @{
+                TimeSpan tt = new TimeSpan(14, 0, 0);
+                TimeSpan tt1 = new TimeSpan(10, 0, 0);
+
+
+                <tr><td>Vreme prijave</td><td><input type="time" value=" @tt" name="pocetakp" /></td></tr>
+                <tr><td>Vreme odjave</td><td><input type="time" value=" @tt1" name="krajp" /></td></tr>
+            }
+
+            <tr>
+                <td>Datum dostupnosti od</td>
+                <td><input type="date" name="datumDostupnostiOd" required /></td>
+            </tr>
+            <tr>
+                <td>Datum dostupnosti do</td>
+                <td><input type="date" name="datumDostupnostiDo" required /></td>
+            </tr>
+            <tr>
+                <td>Cena po noci</td>
+                <td><input type="number" name="cenaNocenja" required /></td>
+            </tr>
+
+        </table>
+        <table border="0" align="center" style="background-color:transparent" class="w3-text-black w3-large">
+            <tr>
+                <td><b>Sadrzaj apartmana</b></td>
+                <td>&nbsp;</td>
+            </tr>
+            @foreach (var temp in (List<SadrzajApartmana>)Session["SadrzajApartmana"])
+            {
+                <tr>
+                    <td><input type="checkbox" name="@temp.id" value="@temp.naziv" />@temp.naziv</td>
+                </tr>
+            }
+            <tr>
+                @*<td>&nbsp;</td>*@
+                <td colspan="2"><input type="submit" value="Kreiraj" border="1" name="submit" style="background-color:transparent; border-color:black" class="w3-text-black w3-hover-blue" /></td>
+            </tr>
+        </table>
+    </form>
+</body>

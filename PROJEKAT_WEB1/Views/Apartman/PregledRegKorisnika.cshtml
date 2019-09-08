@@ -1,0 +1,53 @@
+﻿@using PROJEKAT_WEB1.Models
+@{
+    Layout = null;
+}
+
+@{
+    var getGosti = new Func<Dictionary<string, Gost>>(() => (Dictionary<string, Gost>)Session["Gosti"]);
+    var getDomacini = new Func<Dictionary<string, Domacin>>(() => (Dictionary<string, Domacin>)Session["Domacini"]);
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+}
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/GoToHomeAdmin" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <br />
+    <table border="1" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+        <tr>
+            <th colspan="6">Registrovani korisnici</th>
+        </tr>
+        <tr>
+            <th>Korisnicko ime</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Lozinka</th>
+            <th>Pol</th>
+            <th>Uloga</th>
+        </tr>
+        @foreach (KeyValuePair<string, Gost> item in getGosti())
+        {
+            <tr>
+                <td>@item.Value.korisnickoIme</td>
+                <td>@item.Value.ime</td>
+                <td>@item.Value.prezime</td>
+                <td>@item.Value.lozinka</td>
+                <td>@item.Value.pol</td>
+                <td>@item.Value.uloga</td>
+            </tr>
+        }
+        @foreach (KeyValuePair<string, Domacin> item in getDomacini())
+        {
+            <tr>
+                <td>@item.Value.korisnickoIme</td>
+                <td>@item.Value.ime</td>
+                <td>@item.Value.prezime</td>
+                <td>@item.Value.lozinka</td>
+                <td>@item.Value.pol</td>
+                <td>@item.Value.uloga</td>
+            </tr>
+        }
+
+    </table>
+</body>

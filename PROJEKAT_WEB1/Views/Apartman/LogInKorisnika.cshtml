@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/Index" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <form action="/Apartman/LogInKorisnika" method="post">
+        <table border="0" style="background-color:transparent" class="w3-text-black w3-display-topright w3-large">
+            <tr>
+                <td>Korisnicko ime: </td>
+                <td><input required type="text" name="korisnickoIme" /></td>
+
+
+                <td>Lozinka: </td>
+                <td><input required type="password" name="lozinka" /></td>
+
+
+                <td><input type="submit" name="submit" value="Potvrdi" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+

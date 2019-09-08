@@ -1,0 +1,83 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/Index" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+
+    </div>
+    <br />
+    <form method="post" action="/Apartman/PretragaApartmanaIndex">
+        <table border="1" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+            <tr>
+                <th>
+                    Pretraga po datumu
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Datum dolaska
+                </td>
+                <td>
+                    <input type="date" name="datumDolaska" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Datum odlaska
+                </td>
+                <td><input type="date" name="datumOdlaska" /></td>
+            </tr>
+            <tr>
+                <th>
+                    Pretraga po lokaciji
+                </th>
+            </tr>
+            <tr>
+                <td>Naziv grada</td>
+                <td><input type="text" name="nazivGrada" /></td>
+            </tr>
+            <tr>
+                <th>
+                    Pretraga po ceni
+                </th>
+            </tr>
+            <tr>
+                <td>Cena od</td>
+                <td><input type="number" value="0" name="cenaOd" /></td>
+            </tr>
+            <tr>
+                <td>Cena do</td>
+                <td><input type="number" name="cenaDo" value="0" /></td>
+            </tr>
+            <tr>
+                <th>Pretraga po broju soba</th>
+            </tr>
+            <tr>
+                <td>Broj soba od</td>
+                <td><input type="number" value="0" name="brSobaOd" /></td>
+            </tr>
+            <tr>
+                <td>Broj soba do</td>
+                <td><input type="number" value="0" name="brSobaDo" /></td>
+            </tr>
+            <tr>
+                <th>Pretraga po broju osoba</th>
+            </tr>
+            <tr>
+                <td>Broj osoba od</td>
+                <td><input type="number" value="0" name="brOsobaOd" /></td>
+            </tr>
+            <tr>
+                <td>Broj osoba do</td>
+                <td><input type="number" name="brOsobaDo" value="0" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:right">
+                    <input type="submit" border="1" value="Pretrazi" style="background-color:transparent; border-color:black" class="w3-text-black w3-hover-blue" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

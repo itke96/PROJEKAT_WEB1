@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/GoToHomeDomacin" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <form action="/Apartman/IzmenaApartmanaDomacinStep2" method="post">
+        <table border="0" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+            <tr>
+                <td>Odaberi slike</td>
+                <td><input type="file" name="slike" value="slike" multiple style="width: 100%;" required /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Ucitaj" border="1" name="submit_slika" style="background-color:transparent; border-color:black" class="w3-text-black w3-hover-blue" /></td>
+            </tr>
+        </table>
+    </form>
+</body>

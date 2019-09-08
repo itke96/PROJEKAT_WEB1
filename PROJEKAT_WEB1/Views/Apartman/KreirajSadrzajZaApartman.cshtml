@@ -1,0 +1,32 @@
+﻿@using PROJEKAT_WEB1.Models
+
+@{
+    Layout = null;
+}
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/PregledSvihSadrzajaZaApartmane" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <br />
+    <form action="/Apartman/KreiranjeSadrzajaZaApartman" method="post" enctype="multipart/form-data">
+        <table border="0" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+            <tr>
+                <td>Naziv</td>
+                <td><input type="text" name="naziv" required /></td>
+            </tr>
+            <tr>
+                <td>Id</td>
+                <td><input type="text" name="id" required /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit" value="Kreiraj" border="1" name="submit" style="background-color:transparent; border-color:black" class="w3-text-black w3-hover-blue" /></td>
+            </tr>
+        </table>
+    </form>
+
+</body>

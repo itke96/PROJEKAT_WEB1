@@ -1,0 +1,22 @@
+﻿@using PROJEKAT_WEB1.Models
+
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/Odjava" class="w3-bar-item w3-button w3-right w3-text-black">Odjava</a>
+        <a href="/Apartman/GoToIzmenaDomacin" class="w3-bar-item w3-button w3-right w3-text-black">Izmena</a>
+        <a href="/Apartman/GoToPregledSvihApartmanaDomacina" class="w3-bar-item w3-button w3-right w3-text-black">Pregled apartmana</a>
+        <a href="/Apartman/IdiNaPretragaApartmanaDomacin" class="w3-bar-item w3-button w3-right w3-text-black">Pretraga apartmana</a>
+    </div>
+    <h2 class="w3-text-black w3-center">Dobrodošli, @(((Korisnik)Session["Ulogovan"]).ime) @(((Korisnik)Session["Ulogovan"]).prezime)</h2>
+</body>
+
+
+

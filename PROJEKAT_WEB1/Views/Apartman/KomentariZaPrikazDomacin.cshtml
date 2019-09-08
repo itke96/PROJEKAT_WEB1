@@ -1,0 +1,94 @@
+﻿@using PROJEKAT_WEB1.Models
+
+@{
+    Layout = null;
+    var getApartmani = new Func<Dictionary<string, Apartman>>(() => (Dictionary<string, Apartman>)Session["Apartmani"]);
+    Domacin domacin = (Domacin)Session["Ulogovan"];
+}
+
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+
+<body style="background-image:url(https://www.desktopbackground.org/download/o/2010/12/07/122515_burj-al-arab-hotel-in-dubai-hd-wallpapers_1920x1080_h.jpg); background-repeat: no-repeat; background-size: cover">
+    <div class="w3-bar w3-border w3-transparent w3-border-black">
+        <a href="/Apartman/GoToHomeDomacin" class="w3-bar-item w3-button w3-text-black">Povratak na pocetnu stranicu</a>
+    </div>
+    <br />
+    <table border="1" style="background-color:transparent; margin-left:20px" class="w3-text-black w3-large">
+        <tr>
+            <th>
+                Slika
+            </th>
+            <th>
+                Adresa
+            </th>
+
+        </tr>
+        @foreach (KeyValuePair<string, Apartman> temp in (Dictionary<string, Apartman>)Session["Apartmani"])//(List<Apartman>)Session["Apartmani"])
+        {
+
+            if (temp.Value.domacin.korisnickoIme == domacin.korisnickoIme)
+            {
+                <tr>
+                    <th>
+                        <img width="140" height="70" src="@temp.Value.slike[0]" />
+                    </th>
+
+                    <th>
+                        @temp.Value.lokacija.adresa.nazivMesta @temp.Value.lokacija.adresa.nazivUlice @temp.Value.lokacija.adresa.broj
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        Ocena
+                    </th>
+                    <th>
+                        Komentar
+                    </th>
+                </tr>
+                foreach (var kom in temp.Value.komentar)
+                {
+                    <tr>
+                        <td>@kom.ocena</td>
+                        @if (kom.tekst.Substring(0, 9) == "%prikazi%")
+                        {
+                            <td>@kom.tekst.Substring(9, kom.tekst.Length - 9)</td>
+                        }
+                        @if (kom.tekst.Substring(0, 7) == "%sakri%")
+                        {
+                            <td>@kom.tekst.Substring(7, kom.tekst.Length - 7)</td>
+                        }
+
+                        @if (kom.tekst.Substring(0, 9) == "%prikazi%")
+                        {
+
+                            <td>
+                                <form action="/Apartman/KomentarSakriDomacin" method="post">
+                                    <input type="hidden" value="@temp.Key" name="apartman" />
+                                    <input type="hidden" value="@kom.tekst" name="sakri" />
+                                    <input type="submit" value="Sakrij komentar" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                                </form>
+                            </td>
+                        }
+                        @if (kom.tekst.Substring(0, 7) == "%sakri%")
+                        {
+
+                            <td>
+                                <form action="/Apartman/KomentarPrikaziDomacin" method="post">
+                                    <input type="hidden" value="@temp.Key" name="apartman" />
+                                    <input type="hidden" value="@kom.tekst" name="prikazi" />
+                                    <input type="submit" value="Prikazi komentar" style="background-color:transparent; border:none" class="w3-text-black w3-hover-blue" />
+                                </form>
+                            </td>
+                        }
+
+                    </tr>
+
+                }
+
+            }
+        }
+    </table>
+</body>

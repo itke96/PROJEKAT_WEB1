@@ -1,0 +1,3 @@
+2:TV2
+3:kolica
+5:stolica
